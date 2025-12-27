@@ -1,13 +1,14 @@
 [build]
   command = "npm run build"
-  publish = ".next"
+  # The @netlify/plugin-nextjs handles the publish directory and routing automatically
 
 [build.environment]
   NODE_VERSION = "20"
   NPM_FLAGS = "--legacy-peer-deps"
 
-# Next.js framework preset
+# Next.js framework preset - handles SSR, API routes, and routing
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
 
 
