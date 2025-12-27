@@ -1,6 +1,5 @@
 "use client";
 
-import { Inter } from "next/font/google";
 import "./globals.css";
 
 import { Sidebar } from "@/components/layout/sidebar";
@@ -9,7 +8,10 @@ import { ToastProvider } from "@/components/ui/toast-provider";
 import { ErrorBoundary } from "@/components/ui/error-boundary";
 import { useState, useEffect, createContext, useContext } from "react";
 
-const inter = Inter({ subsets: ["latin"] });
+// Use system font stack instead of Google Fonts to avoid build issues
+const inter = {
+  className: 'font-sans'
+};
 
 // Create context for sidebar state
 export const SidebarContext = createContext({

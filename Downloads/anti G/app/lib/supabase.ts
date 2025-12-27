@@ -417,6 +417,8 @@ export async function getCombinedContractors(): Promise<import('./mock-data').Co
     }));
 }
 
+
+
 // --- Electricity Meters Types ---
 
 export interface ElectricityMeter {
