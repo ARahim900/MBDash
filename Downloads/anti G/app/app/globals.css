@@ -1,0 +1,255 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* 
+  ================================================
+  LIQUID GLASS PRO - DESIGN SYSTEM
+  ================================================
+  
+  COLOR SYSTEM (Strict Hex Codes)
+  -------------------------------
+  Primary (Brand/Text): #4E4456 (Sophisticated Plum)
+  Secondary (Accents): #81D8D0 (Tiffany Teal)
+  Success: #5BA88B (Muted Green)
+  Warning: #E8A838 (Warm Amber)
+  Error: #C95D63 (Muted Red)
+  Text Body: #374151 (Dark Gray)
+  Text Secondary: #6B7280 (Cool Gray)
+  Background: #FAFAFA (Off-white)
+*/
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-geist-mono);
+
+  /* Standard overrides */
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+
+  /* Radius */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+
+  /* === MUSCAT BAY BRAND COLORS (STRICT) === */
+  --color-mb-primary: #4E4456;
+  --color-mb-primary-hover: #3A3341;
+  --color-mb-primary-active: #2D2632;
+  --color-mb-primary-light: #6B5F73;
+  --color-mb-primary-foreground: #FFFFFF;
+
+  --color-mb-secondary: #81D8D0;
+  --color-mb-secondary-hover: #5FC9BF;
+  --color-mb-secondary-active: #4FB3A9;
+  --color-mb-secondary-light: #A8E5DF;
+  --color-mb-secondary-foreground: #4E4456;
+
+  --color-mb-success: #5BA88B;
+  --color-mb-success-hover: #4A8C73;
+  --color-mb-success-light: #D1F0E3;
+  --color-mb-success-foreground: #FFFFFF;
+
+  --color-mb-warning: #E8A838;
+  --color-mb-warning-hover: #C58C2B;
+  --color-mb-warning-light: #FEF3C7;
+  --color-mb-warning-foreground: #1F2937;
+
+  --color-mb-danger: #C95D63;
+  --color-mb-danger-hover: #A8494E;
+  --color-mb-danger-light: #FEE2E2;
+  --color-mb-danger-foreground: #FFFFFF;
+
+  --color-mb-info: #81D8D0;
+  --color-mb-info-hover: #5FC9BF;
+  --color-mb-info-light: #E0F2F1;
+  --color-mb-info-foreground: #1F2937;
+
+  --color-mb-water: #3B82F6;
+  --color-mb-water-hover: #2563EB;
+  --color-mb-water-light: #DBEAFE;
+
+  --color-mb-neutral-50: #FAFAFA;
+  --color-mb-neutral-100: #F3F4F6;
+  --color-mb-neutral-700: #374151;
+  --color-mb-neutral-900: #1F2937;
+
+  --color-mb-chart-1: #4E4456;
+  --color-mb-chart-2: #81D8D0;
+  --color-mb-chart-3: #6B5F73;
+  --color-mb-chart-4: #5BA88B;
+  --color-mb-chart-5: #E8A838;
+  --color-mb-chart-6: #C95D63;
+}
+
+:root {
+  /* SHADCN vars mapping to MB colors */
+  --background: #FAFAFA;
+  --foreground: #374151;
+
+  /* Glass Card */
+  --card: rgba(255, 255, 255, 0.8);
+  --card-foreground: #374151;
+
+  --popover: #FFFFFF;
+  --popover-foreground: #374151;
+  --primary: #4E4456;
+  --primary-foreground: #FFFFFF;
+  --secondary: #81D8D0;
+  --secondary-foreground: #4E4456;
+  --muted: #F3F4F6;
+  --muted-foreground: #6B7280;
+  --accent: #81D8D0;
+  --accent-foreground: #4E4456;
+  --destructive: #C95D63;
+  --destructive-foreground: #FFFFFF;
+  --border: #E5E7EB;
+  --input: #E5E7EB;
+  --ring: #81D8D0;
+
+  --sidebar: #4E4456;
+  --sidebar-foreground: #FFFFFF;
+  --sidebar-primary: #FFFFFF;
+  --sidebar-primary-foreground: #4E4456;
+  --sidebar-accent: rgba(255, 255, 255, 0.1);
+  --sidebar-accent-foreground: #FFFFFF;
+  --sidebar-border: rgba(255, 255, 255, 0.1);
+  --sidebar-ring: rgba(255, 255, 255, 0.2);
+
+  --chart-1: #4E4456;
+  --chart-2: #81D8D0;
+  --chart-3: #5BA88B;
+  --chart-4: #E8A838;
+  --chart-5: #C95D63;
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+  }
+}
+
+.dark {
+  --background: #111827;
+  --foreground: #F9FAFB;
+  --card: rgba(31, 41, 55, 0.6);
+  --card-foreground: #F9FAFB;
+  --primary: #4E4456;
+  --primary-foreground: #FFFFFF;
+  --secondary: #81D8D0;
+  --secondary-foreground: #1F2937;
+  --muted: #374151;
+  --muted-foreground: #9CA3AF;
+  --accent: #81D8D0;
+  --accent-foreground: #1F2937;
+  --destructive: #C95D63;
+  --border: rgba(255, 255, 255, 0.1);
+  --input: rgba(255, 255, 255, 0.1);
+  --ring: #81D8D0;
+  --sidebar: #3A3341;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    background-image: radial-gradient(circle at 15% 50%, rgba(129, 216, 208, 0.03), transparent 25%),
+      radial-gradient(circle at 85% 30%, rgba(78, 68, 86, 0.03), transparent 25%);
+    background-attachment: fixed;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-semibold text-mb-primary tracking-tight;
+  }
+}
+
+/* === UTILITY CLASSES FOR LIQUID GLASS PRO === */
+@layer utilities {
+
+  /* KPI Shadow */
+  .shadow-kpi {
+    box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Liquid Glass Style */
+  .glass-card {
+    background-color: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 20px;
+    box-shadow:
+      0 4px 24px -1px rgba(0, 0, 0, 0.04),
+      0 0 1px 0 rgba(0, 0, 0, 0.08) inset;
+  }
+
+  .dark .glass-card {
+    background-color: rgba(31, 41, 55, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+  }
+
+  .glass-card-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .text-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-weight: 600;
+    color: var(--muted-foreground);
+  }
+}
+
+/* Ensure proper viewport behavior */
+html,
+body {
+  overflow-x: hidden;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Ensure cards don't overflow their container */
+.grid>* {
+  min-width: 0;
+}

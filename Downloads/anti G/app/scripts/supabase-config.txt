@@ -1,0 +1,13 @@
+# ================================================
+# NEW SUPABASE CONFIGURATION
+# ================================================
+# Copy the contents below to your .env.local file
+# Project ID: utnlgeuqajmwibqmdmgt
+# 
+# Instructions:
+# 1. Open the file: .env.local in the app root directory
+# 2. Replace the existing credentials with these new values:
+# ================================================
+
+NEXT_PUBLIC_SUPABASE_URL=https://utnlgeuqajmwibqmdmgt.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV0bmxnZXVxYWptd2licW1kbWd0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU3ODUzMDAsImV4cCI6MjA4MTM2MTMwMH0.W7SuJF5Ka0IhkCz4RwfaGuEboVrmR2tK9FqTxBb7kxM

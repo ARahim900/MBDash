@@ -1,0 +1,3 @@
+--- START ---
+AMC_CONTRACTS_ERROR: {"code":"PGRST205","details":null,"hint":null,"message":"Could not find the table 'public.amc_contracts' in the schema cache"}
+--- END ---
