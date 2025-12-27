@@ -153,7 +153,7 @@ export default function WaterPage() {
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="month" />
               <YAxis />
-              <Tooltip formatter={(value: number) => formatNumber(value) + ' m³'} />
+              <Tooltip formatter={(value) => formatNumber(value as number) + ' m³'} />
               <Legend />
               <Line type="monotone" dataKey="A1" name="L1 - Main Source" stroke="#EF4444" strokeWidth={2} />
               <Line type="monotone" dataKey="A2" name="L2 - Zone Bulk Meters" stroke="#3B82F6" strokeWidth={2} />
@@ -173,7 +173,7 @@ export default function WaterPage() {
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="month" />
               <YAxis />
-              <Tooltip formatter={(value: number) => formatNumber(value) + ' m³'} />
+              <Tooltip formatter={(value) => formatNumber(value as number) + ' m³'} />
               <Legend />
               <Line type="monotone" dataKey="stage1Loss" name="Stage 1 Loss" stroke="#EF4444" strokeWidth={2} />
               <Line type="monotone" dataKey="stage2Loss" name="Stage 2 Loss" stroke="#F59E0B" strokeWidth={2} />
@@ -282,7 +282,7 @@ export default function WaterPage() {
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="month" />
               <YAxis domain={[0, 100]} />
-              <Tooltip formatter={(value: number) => value.toFixed(1) + '%'} />
+              <Tooltip formatter={(value) => (value as number).toFixed(1) + '%'} />
               <Legend />
               <Area type="monotone" dataKey="efficiency" name="Efficiency %" stroke="#10B981" fill="#10B98130" strokeWidth={2} />
             </AreaChart>
@@ -325,8 +325,8 @@ export default function WaterPage() {
             {/* Zone Summary Cards */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {[
-                { label: 'Zone Bulk Meter', value: selectedZoneData.zoneBulkReading, unit: 'm³', color: '#3B82F6', pct: '100%' },
-                { label: 'Individual Meters Sum', value: selectedZoneData.individualTotal, unit: 'm³', color: '#10B981', pct: ((selectedZoneData.individualTotal / Math.max(selectedZoneData.zoneBulkReading, 1)) * 100).toFixed(0) + '%' },
+                { label: 'Zone Bulk Meter', value: selectedZoneData.bulkMeterReading, unit: 'm³', color: '#3B82F6', pct: '100%' },
+                { label: 'Individual Meters Sum', value: selectedZoneData.individualTotal, unit: 'm³', color: '#10B981', pct: ((selectedZoneData.individualTotal / Math.max(selectedZoneData.bulkMeterReading, 1)) * 100).toFixed(0) + '%' },
                 { label: 'Water Loss', value: selectedZoneData.loss, unit: 'm³', color: selectedZoneData.lossPercentage > 30 ? '#EF4444' : '#F59E0B', pct: selectedZoneData.lossPercentage.toFixed(1) + '%' },
                 { label: 'Zone Efficiency', value: 100 - selectedZoneData.lossPercentage, unit: '%', color: selectedZoneData.lossPercentage < 15 ? '#10B981' : '#F59E0B', pct: 'Coverage' },
               ].map((item, idx) => (
@@ -365,7 +365,7 @@ export default function WaterPage() {
                 <div className="space-y-2">
                   <div className="flex items-center gap-2">
                     <div className="w-3 h-3 rounded-full bg-blue-500" />
-                    <span>Input: {formatNumber(selectedZoneData.zoneBulkReading)} m³</span>
+                    <span>Input: {formatNumber(selectedZoneData.bulkMeterReading)} m³</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="w-3 h-3 rounded-full bg-green-500" />
@@ -390,9 +390,9 @@ export default function WaterPage() {
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis type="number" />
                 <YAxis dataKey="zone" type="category" width={100} />
-                <Tooltip formatter={(value: number) => formatNumber(value) + ' m³'} />
+                <Tooltip formatter={(value) => formatNumber(value as number) + ' m³'} />
                 <Legend />
-                <Bar dataKey="zoneBulkReading" name="Zone Bulk" fill="#3B82F6" />
+                <Bar dataKey="bulkMeterReading" name="Zone Bulk" fill="#3B82F6" />
                 <Bar dataKey="individualTotal" name="Individual Total" fill="#10B981" />
               </BarChart>
             </ResponsiveContainer>
@@ -420,7 +420,7 @@ export default function WaterPage() {
                   return (
                     <tr key={z.zone} className="border-b hover:bg-muted/50">
                       <td className="p-2 font-medium">{z.zone}</td>
-                      <td className="p-2 text-right">{formatNumber(z.zoneBulkReading)}</td>
+                      <td className="p-2 text-right">{formatNumber(z.bulkMeterReading)}</td>
                       <td className="p-2 text-right">{formatNumber(z.individualTotal)}</td>
                       <td className="p-2 text-right">{formatNumber(z.loss)}</td>
                       <td className="p-2 text-right font-semibold" style={{ color: rating.color }}>{z.lossPercentage.toFixed(1)}%</td>
@@ -440,7 +440,7 @@ export default function WaterPage() {
     const typeData = typeAnalysis;
     const totalConsumption = typeData.reduce((sum, t) => sum + t.total, 0);
     const selectedTypeData = typeData.find((t) => t.type === selectedType);
-    
+
     return (
       <div className="space-y-6">
         {/* Type Selector */}
@@ -449,11 +449,10 @@ export default function WaterPage() {
             <button
               key={t.type}
               onClick={() => setSelectedType(t.type)}
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                selectedType === t.type
-                  ? 'text-white'
-                  : 'bg-muted hover:bg-muted/80'
-              }`}
+              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${selectedType === t.type
+                ? 'text-white'
+                : 'bg-muted hover:bg-muted/80'
+                }`}
               style={selectedType === t.type ? { backgroundColor: t.color } : {}}
             >
               {t.type}
@@ -500,13 +499,13 @@ export default function WaterPage() {
                     cx="50%"
                     cy="50%"
                     outerRadius={80}
-                    label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                    label={({ name, percent }) => `${name} ${((percent || 0) * 100).toFixed(0)}%`}
                   >
                     {typeData.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={entry.color} />
                     ))}
                   </Pie>
-                  <Tooltip formatter={(value: number) => formatNumber(value) + ' m³'} />
+                  <Tooltip formatter={(value) => formatNumber(value as number) + ' m³'} />
                 </PieChart>
               </ResponsiveContainer>
             </div>
@@ -521,7 +520,7 @@ export default function WaterPage() {
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="type" />
                   <YAxis />
-                  <Tooltip formatter={(value: number) => formatNumber(value) + ' m³'} />
+                  <Tooltip formatter={(value) => formatNumber(value as number) + ' m³'} />
                   <Bar dataKey="total" name="Consumption">
                     {typeData.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={entry.color} />
@@ -739,11 +738,10 @@ export default function WaterPage() {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center gap-2 px-4 py-3 text-sm font-medium border-b-2 transition-colors whitespace-nowrap ${
-                    activeTab === tab.id
-                      ? 'border-primary text-primary'
-                      : 'border-transparent text-muted-foreground hover:text-foreground'
-                  }`}
+                  className={`flex items-center gap-2 px-4 py-3 text-sm font-medium border-b-2 transition-colors whitespace-nowrap ${activeTab === tab.id
+                    ? 'border-primary text-primary'
+                    : 'border-transparent text-muted-foreground hover:text-foreground'
+                    }`}
                 >
                   <Icon className="w-4 h-4" />
                   {tab.label}
